@@ -4,14 +4,14 @@ A comprehensive overview of what a Full Stack Web Development project is, its co
 
 ---
 
-## 🚀 What is a Full Stack Web Project?
+## What is a Full Stack Web Project?
 In simple terms, a **Full Stack Web Development Project** is a complete website or web application where both the parts users see (**Front-end**) and the background logic, databases, and servers (**Back-end**) work together seamlessly.
 
 In a full-stack project, a user can input data, that data is processed and saved, and it can be retrieved later. Examples include Facebook, Amazon, or Foodpanda.
 
 ---
 
-## 🏗️ The 3 Main Components
+## The 3 Main Components
 
 ### 1. Front-end (Client-side)
 This is the part users see in their browser—buttons, menus, forms, and layouts. It focuses on user experience (UX) and interface (UI).
