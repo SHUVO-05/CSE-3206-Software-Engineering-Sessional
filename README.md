@@ -24,7 +24,7 @@ The storage room where all data (like usernames, passwords, and posts) is perman
 
 ---
 
-## 🛠️ Tech Stack Requirements
+## Tech Stack Requirements
 
 To build a full-stack application, the following technologies are essential:
 
