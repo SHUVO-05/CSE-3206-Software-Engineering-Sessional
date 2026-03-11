@@ -49,3 +49,8 @@ To build a full-stack application, the following technologies are essential:
 * **Deployment:** Platforms like [Vercel](https://vercel.com/), [Netlify](https://www.netlify.com/), or [AWS](https://aws.amazon.com/).
 
 ---
+### Week 1 & 2 Activity
+![Work Sample](https://github.com/SHUVO-05/CSE-3206-Software-Engineering-Sessional/blob/main/awesometodos/step1.png)
+![Work Sample](https://github.com/SHUVO-05/CSE-3206-Software-Engineering-Sessional/blob/main/awesometodos/step2.png)
+![Work Sample](https://github.com/SHUVO-05/CSE-3206-Software-Engineering-Sessional/blob/main/awesometodos/step2(1).png)
+![Work Sample](https://github.com/SHUVO-05/CSE-3206-Software-Engineering-Sessional/blob/main/awesometodos/step3.png)
