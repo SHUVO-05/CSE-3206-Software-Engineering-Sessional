@@ -2,7 +2,7 @@
 export default function App() {
   return (
     <main className="container">
-      <h1>Asesome Todos</h1>
+      <h1>Website BUIT Todos</h1>
     </main>
   );
 }
