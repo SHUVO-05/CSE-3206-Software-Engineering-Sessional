@@ -78,7 +78,7 @@ const StyledBox = styled(Box)`
 
 const StyledTitle = styled.h1`
   font-size: 3rem;
-  color: #252525;
+  color: #2100b3;
   /* font-family: "Manrope"; */
   font-weight: bold;
   padding-top: 0;
