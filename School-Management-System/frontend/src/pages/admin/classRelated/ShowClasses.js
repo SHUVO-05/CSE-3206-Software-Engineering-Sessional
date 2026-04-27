@@ -41,37 +41,41 @@ const ShowClasses = () => {
     console.log(address);
     setMessage("Sorry the delete function has been disabled for now.")
     setShowPopup(true)
-    // dispatch(deleteUser(deleteID, address))
-    //   .then(() => {
-    //     dispatch(getAllSclasses(adminID, "Sclass"));
-    //   })
   }
 
   const sclassColumns = [
     { id: 'name', label: 'Class Name', minWidth: 170 },
   ]
 
-  const sclassRows = sclassesList && sclassesList.length > 0 && sclassesList.map((sclass) => {
-    return {
-      name: sclass.sclassName,
-      id: sclass._id,
-    };
-  })
+  // ✅ FIXED
+  const sclassRows = Array.isArray(sclassesList)
+    ? sclassesList.map((sclass) => {
+        return {
+          name: sclass.sclassName,
+          id: sclass._id,
+        };
+      })
+    : [];
 
   const SclassButtonHaver = ({ row }) => {
     const actions = [
       { icon: <PostAddIcon />, name: 'Add Subjects', action: () => navigate("/Admin/addsubject/" + row.id) },
       { icon: <PersonAddAlt1Icon />, name: 'Add Student', action: () => navigate("/Admin/class/addstudents/" + row.id) },
     ];
+
     return (
       <ButtonContainer>
         <IconButton onClick={() => deleteHandler(row.id, "Sclass")} color="secondary">
           <DeleteIcon color="error" />
         </IconButton>
-        <BlueButton variant="contained"
-          onClick={() => navigate("/Admin/classes/class/" + row.id)}>
+
+        <BlueButton
+          variant="contained"
+          onClick={() => navigate("/Admin/classes/class/" + row.id)}
+        >
           View
         </BlueButton>
+
         <ActionMenu actions={actions} />
       </ButtonContainer>
     );
@@ -85,9 +89,11 @@ const ShowClasses = () => {
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
+
     const handleClose = () => {
       setAnchorEl(null);
     };
+
     return (
       <>
         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -105,6 +111,7 @@ const ShowClasses = () => {
             </IconButton>
           </Tooltip>
         </Box>
+
         <Menu
           anchorEl={anchorEl}
           id="account-menu"
@@ -118,8 +125,8 @@ const ShowClasses = () => {
           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-          {actions.map((action) => (
-            <MenuItem onClick={action.action}>
+          {actions.map((action, index) => (
+            <MenuItem key={index} onClick={action.action}>
               <ListItemIcon fontSize="small">
                 {action.icon}
               </ListItemIcon>
@@ -133,38 +140,51 @@ const ShowClasses = () => {
 
   const actions = [
     {
-      icon: <AddCardIcon color="primary" />, name: 'Add New Class',
+      icon: <AddCardIcon color="primary" />,
+      name: 'Add New Class',
       action: () => navigate("/Admin/addclass")
     },
     {
-      icon: <DeleteIcon color="error" />, name: 'Delete All Classes',
+      icon: <DeleteIcon color="error" />,
+      name: 'Delete All Classes',
       action: () => deleteHandler(adminID, "Sclasses")
     },
   ];
 
   return (
     <>
-      {loading ?
+      {loading ? (
         <div>Loading...</div>
-        :
+      ) : (
         <>
-          {getresponse ?
+          {getresponse ? (
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-              <GreenButton variant="contained" onClick={() => navigate("/Admin/addclass")}>
+              <GreenButton
+                variant="contained"
+                onClick={() => navigate("/Admin/addclass")}
+              >
                 Add Class
               </GreenButton>
             </Box>
-            :
+          ) : (
             <>
-              {Array.isArray(sclassesList) && sclassesList.length > 0 &&
-                <TableTemplate buttonHaver={SclassButtonHaver} columns={sclassColumns} rows={sclassRows} />
-              }
-              <SpeedDialTemplate actions={actions} />
-            </>}
-        </>
-      }
-      <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
+              <TableTemplate
+                buttonHaver={SclassButtonHaver}
+                columns={sclassColumns}
+                rows={sclassRows}
+              />
 
+              <SpeedDialTemplate actions={actions} />
+            </>
+          )}
+        </>
+      )}
+
+      <Popup
+        message={message}
+        setShowPopup={setShowPopup}
+        showPopup={showPopup}
+      />
     </>
   );
 };

@@ -13,7 +13,7 @@ import {
     getError,
 } from './userSlice';
 
-// ✅ BASE URL fix করা হয়েছে (env এর ঝামেলা বাদ)
+
 const BASE_URL = "http://localhost:5000";
 
 export const loginUser = (fields, role) => async (dispatch) => {
@@ -35,11 +35,11 @@ export const loginUser = (fields, role) => async (dispatch) => {
             headers: { 'Content-Type': 'application/json' },
         });
 
-        if (result.data && result.data.role) {
-            dispatch(authSuccess(result.data));
-        } else {
-            dispatch(authFailed(result.data.message || "Login Failed"));
-        }
+       if (result.data && !result.data.message) {
+    dispatch(authSuccess(result.data));
+} else {
+    dispatch(authFailed(result.data.message || "Login Failed"));
+}
     } catch (error) {
         console.log("Login Error:", error);
         dispatch(authError("Network Error"));
