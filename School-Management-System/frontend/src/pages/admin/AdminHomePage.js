@@ -8,12 +8,17 @@ import styled from 'styled-components';
 import CountUp from 'react-countup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { getAllSclasses } from '../../redux/sclassRelated/sclassHandle';
 import { getAllStudents } from '../../redux/studentRelated/studentHandle';
 import { getAllTeachers } from '../../redux/teacherRelated/teacherHandle';
 
 const AdminHomePage = () => {
+
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const { studentsList } = useSelector((state) => state.student);
     const { sclassesList } = useSelector((state) => state.sclass);
     const { teachersList } = useSelector((state) => state.teacher);
@@ -36,8 +41,9 @@ const AdminHomePage = () => {
         <>
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                 <Grid container spacing={3}>
+
                     <Grid item xs={12} md={3} lg={3}>
-                        <StyledPaper>
+                        <StyledPaper onClick={() => navigate('/Admin/students')}>
                             <img src={Students} alt="Students" />
                             <Title>
                                 Total Students
@@ -45,8 +51,9 @@ const AdminHomePage = () => {
                             <Data start={0} end={numberOfStudents} duration={2.5} />
                         </StyledPaper>
                     </Grid>
+
                     <Grid item xs={12} md={3} lg={3}>
-                        <StyledPaper>
+                        <StyledPaper onClick={() => navigate('/Admin/classes')}>
                             <img src={Classes} alt="Classes" />
                             <Title>
                                 Total Classes
@@ -54,8 +61,9 @@ const AdminHomePage = () => {
                             <Data start={0} end={numberOfClasses} duration={5} />
                         </StyledPaper>
                     </Grid>
+
                     <Grid item xs={12} md={3} lg={3}>
-                        <StyledPaper>
+                        <StyledPaper onClick={() => navigate('/Admin/teachers')}>
                             <img src={Teachers} alt="Teachers" />
                             <Title>
                                 Total Teachers
@@ -63,25 +71,28 @@ const AdminHomePage = () => {
                             <Data start={0} end={numberOfTeachers} duration={2.5} />
                         </StyledPaper>
                     </Grid>
+
                     <Grid item xs={12} md={3} lg={3}>
                         <StyledPaper>
                             <img src={Fees} alt="Fees" />
                             <Title>
                                 Fees Collection
                             </Title>
-                            <Data start={0} end={23000} duration={2.5} prefix="$" />                        </StyledPaper>
+                            <Data start={0} end={23000} duration={2.5} prefix="$" />
+                        </StyledPaper>
                     </Grid>
+
                     <Grid item xs={12} md={12} lg={12}>
                         <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                             <SeeNotice />
                         </Paper>
                     </Grid>
+
                 </Grid>
             </Container>
         </>
     );
 };
-
 
 const StyledPaper = styled(Paper)`
   padding: 16px;
@@ -91,6 +102,13 @@ const StyledPaper = styled(Paper)`
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+  }
 `;
 
 const Title = styled.p`
@@ -102,4 +120,4 @@ const Data = styled(CountUp)`
   color: green;
 `;
 
-export default AdminHomePage
+export default AdminHomePage;
